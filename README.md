@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="600" height="194" src="https://otservers.org/img/votelistener.png">
+  <img width="375" height="81" src="https://otservers.org/img/votelistener.png">
 </p>
 
 # How it works
