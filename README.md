@@ -3,42 +3,21 @@
 </p>
 
 # How it works
-tibia-votelistener is a standalone program that runs on the same machine as your Tibia server. It listens for vote notifications from [otservers.org](https://otservers.org), and then rewards the player who voted.
-
-# Download
-- Windows: unreleased
-- Linux: unreleased
-- Cross-platform (Python): [src/VoteListener.py](https://github.com/Arrexel/tibia-votelistener/blob/master/src/VoteListener.py)
+OT-VoteListener runs on the same machine as your OT server. It listens for vote notifications from [otservers.org](https://otservers.org), and then rewards the player who voted.
 
 # Installation
-Installation is very easy. Simply run the executable file (or if using the Python script, run it with `python VoteListener.py`) and a `VoteListener.ini` file will be generated in the same folder.
+Installation is very easy. Simply place `vote.php` somewhere in your public-facing web directory. Afterwards, generate a key from your [otservers.org](https://otservers.org) control panel.
 
-## Configuring VoteListener.ini
-
-Set the language of the vote listener. `en` for English and `pr` for Portuguese.
+## Configuring vote.php
+Enter your key and OT server database connection information. A table named `player_votes` will be created automatically and used to store votes.
 ```
-[LANGUAGE]
-lang = en
+$key = ''
+$dbUser = 'root'
+$dbPass = 'toor'
+$dbIP = 'localhost'
+$dbPort = 3306
+$dbDatabase = 'tibia_db'
 ```
-This is the IP and Port the vote listener will use. Normally you will want to enter your public IP address (not localhost or 127.0.0.1). The key can be obtained from your [otservers.org](https://otservers.org) control panel.
-```
-[VOTE LISTENER]
-ip = 192.168.204.161
-port = 7272
-key = YOUR_KEY_HERE
-```
-
-Enter your Tibia server database connection information. A table named `player_votes` will be created automatically and used to store votes. If you are not running multiple servers on the same machine, leave the `table_prefix` blank.
-```
-[TIBIA DATABASE]
-username = root
-password = toor
-database = tibia
-ip = 127.0.0.1
-port = 3306
-table_prefix =
-```
-
 
 ## Adding the Lua script
 Open `data/talkactions/talkactions.xml` and add the following line.
