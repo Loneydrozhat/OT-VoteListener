@@ -65,20 +65,22 @@ if (mysqli_connect_errno()) {
 // Used by otservers.org to set up the database table
 // Utilizado por otservers.org para fazer o setup da tabela de banco de dados
 if (isset($_POST['setup'])) {    
-    $conn->query('CREATE TABLE IF NOT EXISTS player_votes (id int(11) auto_increment, name varchar(255) CHARACTER SET utf8 NOT NULL, votes int(11) NOT NULL, votes_total int(11) NOT NULL, UNIQUE KEY (id))');
+    $conn->query('CREATE TABLE IF NOT EXISTS player_votes (username varchar(255) CHARACTER SET utf8 NOT NULL, votes int(11) NOT NULL, votes_total int(11) NOT NULL, PRIMARY KEY(username))');
     $conn->close();
     exit('success');
 }
 
 if (isset($_POST['username'])) { 
     $username = $_POST['username'];
-    $stmt = $conn->prepare('INSERT INTO player_votes (name, votes, votes_total) VALUES (?, 1, 1) ON DUPLICATE KEY UPDATE votes=votes+1, votes_total=votes_total+1');
+    $stmt = $conn->prepare('INSERT INTO player_votes (username, votes, votes_total) VALUES (?, 1, 1) ON DUPLICATE KEY UPDATE votes=votes+1, votes_total=votes_total+1');
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $stmt->close();
+    $conn->close();
+    exit('success');
 }
 
 $conn->close();
-exit('success');
+exit('fail');
 
 ?>
