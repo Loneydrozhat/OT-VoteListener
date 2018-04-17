@@ -69,9 +69,10 @@ end
 Customizing vote rewards is very easy. Simply add the rewards to the `giveReward()` function. 
 
 ### Example (give items)
-Gives the player 1x Spike Sword. Refer to `data/items/items.xml` for a list of all item IDs.
+Gives the player 1x Spike Sword and 1000x Gold Coins. Refer to `data/items/items.xml` for a list of all item IDs.
 ```
 function giveReward(player)
     player:addItem(2383, 1)
+    player:addItem(2148, 1000)
 end
 ```
